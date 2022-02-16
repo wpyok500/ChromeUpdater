@@ -5,9 +5,9 @@
 本项目在[耍下更新器1.0.0.0](https://github.com/TkYu/ChromeUpdater)的基础上进行二次开发
 耍下更新器已停更，chrome安装包耍下服务器不在提供，改用从谷歌官方服务器获取，需设置翻墙，请自行设置代理服务器。
 
-## 项目：
+###项目：
 
-## *ChromeUpdaterCore
+###*ChromeUpdaterCore
 核心函数类库，你可以：
 
 * 使用 ChromeUpdaterCore.GetUpdateFromGoogle 获取 chrome 下载链接。
