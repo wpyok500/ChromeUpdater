@@ -61,7 +61,7 @@ namespace ChromeUpdater.ArthasUI
                 System.Diagnostics.Process.Start("https://www.google.com/intl/zh-CN/chrome/");
             else if (header.StartsWith("福建-兮"))
                 //http://commondatastorage.googleapis.com/chromium-browser-continuous/index.html
-                System.Diagnostics.Process.Start("https://www.google.com/intl/zh-CN/chrome/");
+                System.Diagnostics.Process.Start("https://github.com/wpyok500/ChromeUpdater");
             else
                 System.Diagnostics.Process.Start("https://github.com/TkYu/ChromeUpdater");
         }
