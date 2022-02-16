@@ -1,33 +1,32 @@
-## FOR AZEROTH !!!
+##这是什么 ？
 
-秋深し　情けは人の　ためならず
+这是一个非常简单的 chrome 更新程序。
 
-## What's this ?
+##本项目在[耍下更新器1.0.0.0](https://github.com/TkYu/ChromeUpdater)的基础上进行二次开发
+耍下更新器已停更，chrome安装包耍下服务器不在提供，改用从谷歌官方服务器获取，需设置翻墙，请自行设置代理服务器。
 
-This is a very simple chrome updater.
-
-###Projects:
+###项目：
 
 ####*ChromeUpdaterCore
-Core functions class library, you can :
+核心函数类库，你可以：
 
-* Use ChromeUpdaterCore.GetUpdateFromGoogle to get chrome download links.
-* Use ChromeUpdaterCore.GetUpdateFromShuax to get chrome download links in China.
-* Use ChromeUpdaterCore.DownloadFile to download a file and check sha1.
-* Use ChromeUpdaterCore.Extract to extract a compressed file. (if you have 7-zip or WinRAR, it will invoke automatic)
+* 使用 ChromeUpdaterCore.GetUpdateFromGoogle 获取 chrome 下载链接。
+* 使用 ChromeUpdaterCore.GetUpdateFromShuax 在中国获取 chrome 下载链接。
+* 使用 ChromeUpdaterCore.DownloadFile 下载文件并检查 sha1。
+* 使用 ChromeUpdaterCore.Extract 提取压缩文件。 （如果你有 7-zip 或 WinRAR，它会自动调用）
 
-**AND**
-Binding a ChromeUpdaterCore instance to wpf DataContext :
+**和**
+将 ChromeUpdaterCore 实例绑定到 wpf DataContext ：
 
-* Binding CmdCheckUpdate command for check update.
-* Binding CmdDownload command for download chrome installer.
-* Binding CmdDownloadAndExtract command for download chrome installer and extract that.
-* Binding CmdCopyToClipboard command for copy something to clipboard.
+* 绑定 CmdCheckUpdate 命令进行检查更新。
+* 绑定 CmdDownload 命令以下载 chrome 安装程序。
+* 绑定 CmdDownloadAndExtract 命令以下载 chrome 安装程序并解压缩。
+* 绑定 CmdCopyToClipboard 命令，用于将内容复制到剪贴板。
 
-####*We have three UI implement here(MVVM based)
+####*我们这里有三个 UI 实现（基于 MVVM）
 
 * ChromeUpdater.BasicWPFUI
-* ChromeUpdater.ArthasUI
+* ChromeUpdater.ArthasUI  只更新此UI，其他UI请自行参照更改。
 * ChromeUpdater.MahAppsUI
 
 ![](preview.png)
