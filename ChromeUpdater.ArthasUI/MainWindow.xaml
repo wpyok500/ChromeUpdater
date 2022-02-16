@@ -41,6 +41,7 @@
                 <arthas:MetroMenuItem Header="耍下(阿杰)的GitHub" Click="MenuItem_OnClick" />
                 <arthas:MetroMenuItem Header="ONEO(阿疯)的GitHub" Click="MenuItem_OnClick" />
                 -->
+                <arthas:MetroMenuItem Header="福建-兮的GitHub" Click="MenuItem_OnClick" />
                 <arthas:MetroMenuItem Header="TsungKang(0x3BDE89C4)的GitHub" Click="MenuItem_OnClick" />
             </arthas:MetroTitleMenuItem>
         </arthas:MetroTitleMenu>
