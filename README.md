@@ -2,12 +2,12 @@
 
 这是一个非常简单的 chrome 更新程序。
 
-##本项目在[耍下更新器1.0.0.0](https://github.com/TkYu/ChromeUpdater)的基础上进行二次开发
+本项目在[耍下更新器1.0.0.0](https://github.com/TkYu/ChromeUpdater)的基础上进行二次开发
 耍下更新器已停更，chrome安装包耍下服务器不在提供，改用从谷歌官方服务器获取，需设置翻墙，请自行设置代理服务器。
 
-###项目：
+##项目：
 
-####*ChromeUpdaterCore
+##*ChromeUpdaterCore
 核心函数类库，你可以：
 
 * 使用 ChromeUpdaterCore.GetUpdateFromGoogle 获取 chrome 下载链接。
@@ -23,7 +23,7 @@
 * 绑定 CmdDownloadAndExtract 命令以下载 chrome 安装程序并解压缩。
 * 绑定 CmdCopyToClipboard 命令，用于将内容复制到剪贴板。
 
-####*我们这里有三个 UI 实现（基于 MVVM）
+##*我们这里有三个 UI 实现（基于 MVVM）
 
 * ChromeUpdater.BasicWPFUI
 * ChromeUpdater.ArthasUI  只更新此UI，其他UI请自行参照更改。
