@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Xml;
 using MihaZupan;
+using System.Diagnostics;
 
 namespace ChromeUpdater
 {
@@ -452,6 +453,23 @@ namespace ChromeUpdater
                     if (File.Exists(c7z)) File.Delete(c7z);
                     await Task.Run(() =>
                     {
+                        Process[] ps = Process.GetProcessesByName("chrome");
+                        if (ps.Length > 0)
+                        {
+                            System.Windows.MessageBox.Show("检测到Chrome浏览器正在运行，即将强制退出升级！", "chrome升级提示", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            foreach (Process item in ps)
+                            {
+                                try
+                                {
+                                    item.Kill();
+                                }
+                                catch (Exception)
+                                {
+                                } 
+                            }
+
+                        }
+
                         var chromeExePath = Path.Combine(SelectedPath, "chrome.exe");
                         var oldChrome = Path.Combine(SelectedPath, "old_chrome.exe");
                         if (KeepOldversion)
@@ -460,6 +478,7 @@ namespace ChromeUpdater
                             {
                                 //删除老版本的老版本
                                 var oldversion = Path.Combine(SelectedPath, System.Diagnostics.FileVersionInfo.GetVersionInfo(oldChrome).FileVersion);
+                                
                                 if (Directory.Exists(oldversion))
                                     Win32Api.IO.DeleteFile(oldversion);
                                 File.Delete(oldversion);
@@ -475,6 +494,7 @@ namespace ChromeUpdater
                                 var cv = Path.Combine(SelectedPath, System.Diagnostics.FileVersionInfo.GetVersionInfo(chromeExePath).FileVersion);
                                 if (Directory.Exists(cv))
                                     Win32Api.IO.DeleteFile(cv);
+                                    Win32Api.IO.DeleteFile(chromeExePath);
                             }
                         }
                         Win32Api.IO.MoveUp(Path.Combine(SelectedPath, "Chrome-bin"));
