@@ -146,7 +146,7 @@ namespace ChromeUpdater
             set { _downloadPercent = value; OnPropertyChanged(); }
         }
         //=====================
-        private string _ProxyAddress = "127.0.0.1";
+        private string _ProxyAddress;
         public string ProxyAddress
         {
             get { return _ProxyAddress; }
@@ -158,7 +158,7 @@ namespace ChromeUpdater
                 OnPropertyChanged();
             }
         }
-        private string _ProxyProt = "10808";
+        private string _ProxyProt;
         public string ProxyProt
         {
             get { return _ProxyProt; }
@@ -170,8 +170,8 @@ namespace ChromeUpdater
                 OnPropertyChanged();
             }
         }
-        private static string proxyAddress = "127.0.0.1";
-        private static string proxyProt = "10808";
+        private static string proxyAddress;
+        private static string proxyProt;
         //=====================
 
         private IMessageService _messageService;

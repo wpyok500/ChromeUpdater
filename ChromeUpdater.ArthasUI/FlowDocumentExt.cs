@@ -21,7 +21,8 @@ namespace ChromeUpdater.ArthasUI
             Default.AddLine("本更新器可以查询Chrome安装文件的下载地址，");
             Default.AddLine(Environment.NewLine);
             Default.AddLine("耍下已停更，本更新器在耍下更新器1.0.0.0的基础上进行二次修改。", Blue);
-            Default.AddLine("耍下已停更，故改用谷歌官方网站查询，请设置代理服务器，以便从谷歌官方网站查询。", Green);
+            Default.AddLine("耍下已停更，故改用谷歌官方网站查询。", Green);
+            Default.AddLine("如果无法正常查询，请设置代理服务器或改host增加tools.google.com的host ip", Red);
             //Default.AddLine("如果您设置了系统代理，会尝试前往谷歌官方网站查询，如果没有代理则会从耍下的服务器获取。");
             Default.AddLine(Environment.NewLine);
             //Default.Add("如果遇到问题可以前往 耍下");
