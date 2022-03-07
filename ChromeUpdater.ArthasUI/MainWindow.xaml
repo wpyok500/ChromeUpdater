@@ -19,7 +19,7 @@
                     <arthas:MetroMenuItem Header="win_stable_x64离线安装包" Click="MenuItem_OnClick"/>
                     <arthas:MetroMenuItem Header="win_beta_x64离线安装包" Click="MenuItem_OnClick"/>
                     <arthas:MetroMenuItem Header="win_dev_x64离线安装包" Click="MenuItem_OnClick"/>
-                    <arthas:MetroMenuItem Header="win_canary_x64离线安装包" Click="MenuItem_OnClick"/>
+                    <arthas:MetroMenuItem Header="win_canary_x64在线安装包" Click="MenuItem_OnClick"/>
                 </arthas:MetroMenuItem>
                 <arthas:MetroMenuItem Header="liuux_chrome离线安装包">
                     <arthas:MetroMenuItem Header="Debian/Ubuntu_x64离线安装包" Click="MenuItem_OnClick" />

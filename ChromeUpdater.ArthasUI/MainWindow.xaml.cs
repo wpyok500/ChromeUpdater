@@ -39,13 +39,15 @@ namespace ChromeUpdater.ArthasUI
             else if (header.StartsWith("ONEO"))
                 System.Diagnostics.Process.Start("https://github.com/1217950746");
             else if (header.StartsWith("win_stable_x64"))
-                System.Diagnostics.Process.Start("https://www.google.com/chrome/thank-you.html?extra=stablechannel&platform=win64&standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0");
+                //https://www.google.com/chrome/thank-you.html?extra=stablechannel&platform=win64&standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0
+                System.Diagnostics.Process.Start("https://www.google.cn/intl/zh-CN/chrome/thank-you.html?standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0&platform=win64");
             else if (header.StartsWith("win_beta_x64"))
-                System.Diagnostics.Process.Start("https://www.google.com/chrome/thank-you.html?extra=betachannel&platform=win64&standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0");
+                System.Diagnostics.Process.Start("https://www.google.cn/intl/zh-CN/chrome/beta/thank-you.html?standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0&platform=win64");
             else if (header.StartsWith("win_dev_x64"))
-                System.Diagnostics.Process.Start("https://www.google.com/chrome/dev/thank-you.html?extra=devchannel&platform=win64&standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0");
+                //https://www.google.com/chrome/dev/thank-you.html?extra=devchannel&platform=win64&standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0
+                System.Diagnostics.Process.Start("https://www.google.cn/intl/zh-CN/chrome/dev/thank-you.html?installdataindex=empty&platform=win64&standalone=1&statcb=1&defaultbrowser=0");
             else if (header.StartsWith("win_canary_x64"))
-                System.Diagnostics.Process.Start("https://www.google.com/chrome/thank-you.html?extra=canarychannel&platform=win64&standalone=1&statcb=1&installdataindex=empty&defaultbrowser=0");
+                System.Diagnostics.Process.Start("https://www.google.cn/intl/zh-CN/chrome/canary/thank-you.html?installdataindex=empty&platform=win64&standalone=1&statcb=1&defaultbrowser=0");
             else if (header.StartsWith("Debian/Ubuntu"))
                 System.Diagnostics.Process.Start("https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb");
             else if (header.StartsWith("Fedora/openSUSE"))

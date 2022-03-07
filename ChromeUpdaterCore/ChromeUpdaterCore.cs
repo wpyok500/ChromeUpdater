@@ -146,7 +146,7 @@ namespace ChromeUpdater
             set { _downloadPercent = value; OnPropertyChanged(); }
         }
         //=====================
-        private string _ProxyAddress = "127.0.0.1";
+        private string _ProxyAddress;
         public string ProxyAddress
         {
             get { return _ProxyAddress; }
@@ -158,7 +158,7 @@ namespace ChromeUpdater
                 OnPropertyChanged();
             }
         }
-        private string _ProxyProt = "10808";
+        private string _ProxyProt;
         public string ProxyProt
         {
             get { return _ProxyProt; }
@@ -170,8 +170,8 @@ namespace ChromeUpdater
                 OnPropertyChanged();
             }
         }
-        private static string proxyAddress = "127.0.0.1";
-        private static string proxyProt = "10808";
+        private static string proxyAddress;
+        private static string proxyProt;
         //=====================
 
         private IMessageService _messageService;
@@ -181,6 +181,8 @@ namespace ChromeUpdater
         #region Methods
         private void LoadConfig()
         {
+            
+            
             if (File.Exists(ConfigIni.Path))
             {
                 KeepOldversion = ConfigIni.Read("KeepLastVersion", "Updater") == "1";
@@ -193,6 +195,27 @@ namespace ChromeUpdater
                     var bk = Path.GetFullPath(lastpath);
                     if (Directory.Exists(bk))
                         SelectedPath = bk;
+                    if (File.Exists($"{SelectedPath}\\branch"))
+                    {
+                        string vl = File.ReadAllText($"{SelectedPath}\\branch");
+                        switch (vl)
+                        {
+                            case "Dev":
+                                BranchSelected = Branch.Dev;
+                                break;
+                            case "Stable":
+                                BranchSelected = Branch.Stable;
+                                break;
+                            case "Canary":
+                                BranchSelected = Branch.Canary;
+                                break;
+                            case "Beta":
+                                BranchSelected = Branch.Beta;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     return;
                 }
             }
@@ -200,6 +223,7 @@ namespace ChromeUpdater
             {
                 SelectedPath = Path.GetDirectoryName(path);
             }
+            
         }
 
         private void SelectChanged()
