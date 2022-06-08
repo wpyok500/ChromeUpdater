@@ -181,8 +181,6 @@ namespace ChromeUpdater
         #region Methods
         private void LoadConfig()
         {
-            
-            
             if (File.Exists(ConfigIni.Path))
             {
                 KeepOldversion = ConfigIni.Read("KeepLastVersion", "Updater") == "1";
