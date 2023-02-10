@@ -64,6 +64,10 @@ namespace ChromeUpdater.ArthasUI.Converters
                     }
                 }
                 doc.AddLine($"\n查询到的信息({vm.BranchSelected}/{(vm.IsX64Selected ? "x64" : "x86")})：\n", FlowDocumentExt.Blue);
+                //if (vm.BranchSelected== Branch.Canary)
+                //{
+                //    doc.AddLine("Canary 版本 疑似谷歌停更了，暂时用Dev链接代替\n", FlowDocumentExt.Red);
+                //}
                 doc.Add(result.ToString(), FlowDocumentExt.Blue);
                 if (canWrite && canExtract)
                 {

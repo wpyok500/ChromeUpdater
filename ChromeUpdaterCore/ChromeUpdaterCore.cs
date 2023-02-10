@@ -94,7 +94,7 @@ namespace ChromeUpdater
                     ConfigIni.Write("ProxyAddress", ProxyAddress, "Updater");
                     ConfigIni.Write("ProxyProt", ProxyProt, "Updater");
                 }
-                    
+
                 _selectedPath = value;
                 OnPropertyChanged();
                 LoadChromeInfo();
@@ -221,7 +221,7 @@ namespace ChromeUpdater
             {
                 SelectedPath = Path.GetDirectoryName(path);
             }
-            
+
         }
 
         private void SelectChanged()
@@ -352,6 +352,8 @@ namespace ChromeUpdater
             }
             app = new AppUpdateWithArch() { x64 = ap_x64, x86 = ap_x86 };
             chromeUpdate1.Beta = app;
+
+            // Canary 暂时无法获取
             ap_x64 = await GetUpdateFromGoogle(Branch.Canary, true);
             if (ap_x64 == null)
             {
@@ -362,6 +364,8 @@ namespace ChromeUpdater
             ap_x86 = await GetUpdateFromGoogle(Branch.Canary, false);
             app = new AppUpdateWithArch() { x64 = ap_x64, x86 = ap_x86 };
             chromeUpdate1.Canary = app;
+
+
             ap_x64 = await GetUpdateFromGoogle(Branch.Dev, true);
             if (ap_x64 == null)
             {
@@ -487,7 +491,7 @@ namespace ChromeUpdater
                                 }
                                 catch (Exception)
                                 {
-                                } 
+                                }
                             }
 
                         }
@@ -500,7 +504,7 @@ namespace ChromeUpdater
                             {
                                 //删除老版本的老版本
                                 var oldversion = Path.Combine(SelectedPath, System.Diagnostics.FileVersionInfo.GetVersionInfo(oldChrome).FileVersion);
-                                
+
                                 if (Directory.Exists(oldversion))
                                     Win32Api.IO.DeleteFile(oldversion);
                                 File.Delete(oldversion);
@@ -516,7 +520,7 @@ namespace ChromeUpdater
                                 var cv = Path.Combine(SelectedPath, System.Diagnostics.FileVersionInfo.GetVersionInfo(chromeExePath).FileVersion);
                                 if (Directory.Exists(cv))
                                     Win32Api.IO.DeleteFile(cv);
-                                    Win32Api.IO.DeleteFile(chromeExePath);
+                                Win32Api.IO.DeleteFile(chromeExePath);
                             }
                         }
                         Win32Api.IO.MoveUp(Path.Combine(SelectedPath, "Chrome-bin"));
@@ -643,16 +647,16 @@ namespace ChromeUpdater
         {
             AppUpdate cu;
             HttpClient hc;
-            if (string.IsNullOrEmpty(proxyAddress) || string.IsNullOrEmpty(proxyProt) || Regex.IsMatch(proxyProt,"\\D"))
+            if (string.IsNullOrEmpty(proxyAddress) || string.IsNullOrEmpty(proxyProt) || Regex.IsMatch(proxyProt, "\\D"))
             {
-                hc = new HttpClient{ Timeout = TimeSpan.FromMilliseconds(timeout) };
+                hc = new HttpClient { Timeout = TimeSpan.FromMilliseconds(timeout) };
             }
             else
             {
                 HttpClientHandler hch = new HttpClientHandler() { Proxy = new HttpToSocks5Proxy(proxyAddress, int.Parse(proxyProt)) };
                 hc = new HttpClient(hch) { Timeout = TimeSpan.FromMilliseconds(timeout) };
             }
-            
+
             const string url = "https://tools.google.com/service/update2";
             string appid, ap, ap64;
             switch (branch)
@@ -676,7 +680,8 @@ namespace ChromeUpdater
                     ap64 = "x64-dev-multi-chrome";
                     break;
                 case Branch.Canary:
-                    appid = "4EA16AC7-FD5A-47C3-875B-DBF4A2008C20";
+                    appid = "4EA16AC7-FD5A-47C3-875B-DBF4A2008C20";  // Canary 的谷歌关闭，暂时使用dev代替
+                    //appid = "401C381F-E0DE-4B85-8BD8-3F3F14FBDA57";
                     ap = "";
                     ap64 = "x64-canary";
                     break;
@@ -686,11 +691,12 @@ namespace ChromeUpdater
                     ap64 = "";
                     break;
             }
-            HttpContent postData = new StringContent(isX64 ? @"<?xml version=""1.0"" encoding=""UTF-8""?><request protocol=""3.0"" version=""1.3.23.9"" shell_version=""1.3.21.103"" ismachine=""0"" sessionid=""{3597644B-2952-4F92-AE55-D315F45F80A5}"" installsource=""ondemandcheckforupdate"" requestid=""{CD7523AD-A40D-49F4-AEEF-8C114B804658}"" dedup=""cr""><hw sse=""1"" sse2=""1"" sse3=""1"" ssse3=""1"" sse41=""1"" sse42=""1"" avx=""1"" physmemory=""12582912"" /><os platform=""win"" version=""6.3"" arch=""x64""/><app appid=""{" + appid + @"}"" version="""" nextversion="""" ap=""" + ap64 + @""" lang="""" brand=""GGLS"" client=""""><updatecheck/></app></request>" : @"<?xml version=""1.0"" encoding=""UTF-8""?><request protocol=""3.0"" version=""1.3.23.9"" shell_version=""1.3.21.103"" ismachine=""0"" sessionid=""{3597644B-2952-4F92-AE55-D315F45F80A5}"" installsource=""ondemandcheckforupdate"" requestid=""{CD7523AD-A40D-49F4-AEEF-8C114B804658}"" dedup=""cr""><hw sse=""1"" sse2=""1"" sse3=""1"" ssse3=""1"" sse41=""1"" sse42=""1"" avx=""1"" physmemory=""12582912"" /><os platform=""win"" version=""6.3"" arch=""x86""/><app appid=""{" + appid + @"}"" version="""" nextversion="""" ap=""" + ap + @""" lang="""" brand=""GGLS"" client=""""><updatecheck/></app></request>");
+            // win os 版本 https://learn.microsoft.com/en-us/windows/win32/sysinfo/operating-system-version
+            // os version 6.3  10.0
+            HttpContent postData = new StringContent(isX64 ? @"<?xml version=""1.0"" encoding=""UTF-8""?><request protocol=""3.0"" version=""1.3.23.9"" shell_version=""1.3.21.103"" ismachine=""0"" sessionid=""{3597644B-2952-4F92-AE55-D315F45F80A5}"" installsource=""ondemandcheckforupdate"" requestid=""{CD7523AD-A40D-49F4-AEEF-8C114B804658}"" dedup=""cr""><hw sse=""1"" sse2=""1"" sse3=""1"" ssse3=""1"" sse41=""1"" sse42=""1"" avx=""1"" physmemory=""12582912"" /><os platform=""win"" version=""10.0"" arch=""x64""/><app appid=""{" + appid + @"}"" version="""" nextversion="""" ap=""" + ap64 + @""" lang="""" brand=""GGLS"" client=""""><updatecheck/></app></request>" : @"<?xml version=""1.0"" encoding=""UTF-8""?><request protocol=""3.0"" version=""1.3.23.9"" shell_version=""1.3.21.103"" ismachine=""0"" sessionid=""{3597644B-2952-4F92-AE55-D315F45F80A5}"" installsource=""ondemandcheckforupdate"" requestid=""{CD7523AD-A40D-49F4-AEEF-8C114B804658}"" dedup=""cr""><hw sse=""1"" sse2=""1"" sse3=""1"" ssse3=""1"" sse41=""1"" sse42=""1"" avx=""1"" physmemory=""12582912"" /><os platform=""win"" version=""10.0"" arch=""x86""/><app appid=""{" + appid + @"}"" version="""" nextversion="""" ap=""" + ap + @""" lang="""" brand=""GGLS"" client=""""><updatecheck/></app></request>");
             try
             {
                 // ReSharper disable PossibleNullReferenceException
-                
                 var result = await hc.PostAsync(url, postData);
                 result.EnsureSuccessStatusCode();
                 var doc = new XmlDocument();
