@@ -410,7 +410,7 @@ namespace ChromeUpdater
             {
                 var file = Path.Combine(DownloadPath, UpdateInfo.name);
                 if (!File.Exists(file))
-                    await DownloadFile(UpdateInfo.url[4], UpdateInfo.name, UpdateInfo.sha1, _downloadProgress);
+                    await DownloadFile(UpdateInfo.url[0], UpdateInfo.name, UpdateInfo.sha1, _downloadProgress);
                 if (File.Exists(file))
                     System.Diagnostics.Process.Start("Explorer.exe", $"/select,\"{file}\"");
             }
@@ -438,7 +438,7 @@ namespace ChromeUpdater
             {
                 var file = Path.Combine(DownloadPath, UpdateInfo.name);
                 if (!File.Exists(file))
-                    await DownloadFile(UpdateInfo.url[4], UpdateInfo.name, UpdateInfo.sha1, _downloadProgress);
+                    await DownloadFile(UpdateInfo.url[0], UpdateInfo.name, UpdateInfo.sha1, _downloadProgress);
                 DownloadPercent = -1;
                 bool canExtract = false;
 
