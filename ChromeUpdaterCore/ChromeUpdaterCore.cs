@@ -537,6 +537,7 @@ namespace ChromeUpdater
             catch (Exception ex)
             {
                 await ReportException(ex);
+
             }
             finally
             {
